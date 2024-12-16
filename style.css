@@ -1,0 +1,79 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+body{
+  background-color: rgb(5, 22, 58);
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent; 
+}
+.contenar{
+  width: 55rem;
+  height: 38rem;
+  margin: 8rem auto;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+.slid{
+  width: 100%;
+  height: 100%;
+  padding: 6rem;
+  flex-shrink: 0;
+  transition: 0.8s;
+}
+.slid img{
+   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.4rem;
+}
+button{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  border: 0;
+  background-color: inherit;
+  color: wheat;
+  cursor: pointer;
+}
+button:active{
+  color: brown;
+}
+.next{
+  right: 0;
+}
+.pre{
+  left: 0;
+}
+.parent_circl{
+  display: flex;
+  gap: 0.5rem;
+  z-index: 4;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.circl{
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  background-color: gray;
+  cursor: pointer;
+  outline: none;
+}
+.circl:active{
+  background-color: brown;
+}
+@media screen and (max-width: 1000px) {
+  .contenar{
+    margin: 2rem auto;
+    width: 25rem;
+  }
+  .slid{
+    padding: 2.5rem;
+  }
+}

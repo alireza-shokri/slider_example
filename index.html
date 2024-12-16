@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="contenar">
+      <div class="slid">
+        <img
+          src="https://gratisography.com/wp-content/uploads/2024/11/gratisography-augmented-reality-800x525.jpg"
+          alt=""
+          data-id="0"
+        />
+      </div>
+      <div class="slid">
+        <img
+          src="https://static.vecteezy.com/system/resources/thumbnails/027/768/202/small_2x/elegant-green-graphic-background-photo.jpg"
+          alt=""
+          data-id="-1"
+        />
+      </div>
+      <div class="slid">
+        <img
+          src="https://www.worldpressphoto.org/getmedia/4e5e1bb0-2f5b-4c5b-95b9-93b310193f1a/WPP_2022Contest_South-America_LTP_Lalo-de-Almeida_NAD.jpg?maxsidesize=900&resizemode=force"
+          alt=""
+          data-id="-2"
+        />
+      </div>
+      <div class="slid">
+        <img
+          src="https://imgworldsofadventure.com/themes/front/image/ticket-list.jpg"
+          alt=""
+          data-id="-3"
+        />
+      </div>
+      <div class="slid">
+        <img
+          src="https://rollercoastertraveller.com/wp-content/uploads/2020/11/img-worlds-november-2020-38.jpg"
+          alt=""
+          data-id="-4"
+        />
+      </div>
+      <div class="slid">
+        <img
+          src="https://img.freepik.com/free-photo/abstract-glowing-flame-drops-electric-illumination-generative-ai_188544-8092.jpg"
+          alt=""
+          data-id="-5"
+        />
+      </div>
+      <div class="slid">
+        <img
+          src="https://png.pngtree.com/background/20230618/original/pngtree-colorful-butterfly-wallpaper-in-a-black-background-picture-image_3712227.jpg"
+          alt=""
+          data-id="-6"
+        />
+      </div>
+      <div class="slid">
+        <img
+          src="https://t3.ftcdn.net/jpg/09/45/55/08/360_F_945550805_5LF7p9f6T0OCBmrmHBELKGi5QUToYJDT.jpg"
+          alt=""
+          data-id="-7"
+        />
+      </div>
+      <div class="slid">
+        <img
+          src="https://images.squarespace-cdn.com/content/v1/5f13643bd87ba32558d653e7/2e5352cd-f476-48b8-90a4-4219451ddf50/pexels-tatiana-10882899.jpg"
+          alt=""
+          data-id="-8"
+        />
+      </div>
+      <button class="next">
+        <i class="bi bi-arrow-right-circle-fill"></i>
+      </button>
+      <button class="pre"><i class="bi bi-arrow-left-circle-fill"></i></button>
+      <div class="parent_circl"></div>
+    </div>
+    <script>
+      let megdar = 0;
+      const next = document.querySelector(".next");
+      const pre = document.querySelector(".pre");
+      const all_slid = document.querySelectorAll(".slid");
+      // dira ha
+      const ceircl = function (photos) {
+        photos.forEach((iteam) => {
+          document
+            .querySelector(".parent_circl")
+            .insertAdjacentHTML(
+              `beforeEnd`,
+              `<div class="circl" data-id="${iteam.firstElementChild.dataset.id}"></div>`
+            );
+        });
+      };
+      ceircl(all_slid);
+      const all_circl = document.querySelectorAll(".circl");
+      // work
+      const fancwork = function (m) {
+        all_slid.forEach((iteam) => {
+          iteam.style.transform = `translateX(${m}%)`;
+        });
+      };
+      next.addEventListener("click", function () {
+        megdar -= 1;
+        megdar = megdar > -all_slid.length ? megdar : 0;
+        fancwork(megdar * 100);
+      });
+      pre.addEventListener("click", function () {
+        megdar = megdar == 0 ? -(all_slid.length - 1) : (megdar += 1);
+        fancwork(megdar * 100);
+      });
+      // const workincircl=function(num){
+      // }
+      console.log(all_circl);
+      all_circl.forEach((iteam) =>
+        iteam.addEventListener("click", function (e) {
+          fancwork(e.target.dataset.id * 100);
+          megdar = e.target.dataset.id;
+        })
+      );
+    </script>
+  </body>
+</html>
