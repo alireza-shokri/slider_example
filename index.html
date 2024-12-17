@@ -77,11 +77,14 @@
       <button class="pre"><i class="bi bi-arrow-left-circle-fill"></i></button>
       <div class="parent_circl"></div>
     </div>
+
     <script>
       let megdar = 0;
       const next = document.querySelector(".next");
       const pre = document.querySelector(".pre");
       const all_slid = document.querySelectorAll(".slid");
+      const parent_circl = document.querySelector(".parent_circl");
+      let All_circl;
       // dira ha
       const ceircl = function (photos) {
         photos.forEach((iteam) => {
@@ -93,32 +96,55 @@
             );
         });
       };
-      ceircl(all_slid);
-      const all_circl = document.querySelectorAll(".circl");
+    
       // work
       const fancwork = function (m) {
         all_slid.forEach((iteam) => {
           iteam.style.transform = `translateX(${m}%)`;
         });
       };
-      next.addEventListener("click", function () {
+
+      const nextFanc = function () {
         megdar -= 1;
         megdar = megdar > -all_slid.length ? megdar : 0;
         fancwork(megdar * 100);
-      });
-      pre.addEventListener("click", function () {
+        wich_circl(Math.abs(megdar));
+      };
+
+      const preFanc = function () {
         megdar = megdar == 0 ? -(all_slid.length - 1) : (megdar += 1);
         fancwork(megdar * 100);
-      });
-      // const workincircl=function(num){
-      // }
-      console.log(all_circl);
-      all_circl.forEach((iteam) =>
-        iteam.addEventListener("click", function (e) {
+        wich_circl(Math.abs(megdar));
+      };
+
+      parent_circl.addEventListener("click", function (e) {
+        if (e.target.classList.contains("circl")) {
           fancwork(e.target.dataset.id * 100);
-          megdar = e.target.dataset.id;
-        })
-      );
+          megdar =+ e.target.dataset.id;
+          wich_circl(Math.abs(megdar));
+        }
+      });
+
+      const wich_circl = function (num) {
+        All_circl.forEach((item) => (item.style.background = "gray"));
+        All_circl[num].style.background = "red";
+      };
+
+      document.addEventListener("keydown", function (e) {
+        e.key === "ArrowLeft" && preFanc();
+        e.key === "ArrowRight" && nextFanc();
+      });
+
+      const init=function(){
+         // create ceircl
+        ceircl(all_slid);
+        All_circl = document.querySelectorAll(".circl");
+        wich_circl(0);
+      }
+      init();
+      pre.addEventListener("click", preFanc);
+      next.addEventListener("click", nextFanc);
+      
     </script>
   </body>
 </html>

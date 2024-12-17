@@ -64,6 +64,7 @@ button:active{
   background-color: gray;
   cursor: pointer;
   outline: none;
+  transition: 0.3s;
 }
 .circl:active{
   background-color: brown;
